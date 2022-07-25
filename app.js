@@ -5,6 +5,10 @@ const fs = require("fs");
 const multer = require("multer");
 const { createWorker } = require("tesseract.js");
 
+//view engine
+app.use(express.static(__dirname + "/views"));
+app.set("view engine", "ejs");
+
 //storage
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
@@ -17,10 +21,6 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
 }).single("marvel");
-
-app.use(express.static(__dirname + "/views"));
-//view engine
-app.set("view engine", "ejs");
 
 //route
 app.get("/", (req, res) => {
@@ -54,7 +54,8 @@ app.post("/upload", (req, res) => {
         const {
           data: { text },
         } = await worker.recognize(data);
-        console.log(text);
+        //console.log(text);
+
         /* const { data2 } = await worker.getPDF("Tesseract OCR Result");
         fs.writeFileSync("tesseract-ocr-result.pdf", Buffer.from(data));
         console.log("Generate PDF: tesseract-ocr-result.pdf");
