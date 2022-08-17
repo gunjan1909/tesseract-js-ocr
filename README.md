@@ -6,3 +6,5 @@ open localhost:5000 <br>
 upload any image with text <br>
 it will be converted to text<br>
 source: https://github.com/naptha/tesseract.js
+
+need to work on making a site where user can upload the image and download it as pdf text
